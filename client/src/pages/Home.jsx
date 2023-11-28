@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import bg from "../assets/bg.webp";
-import {
-  Container,
-  Box,
-  Text,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-} from "@chakra-ui/react";
-import Login from "../components/Login";
-import Signup from "../components/Signup";
 
 const Home = () => {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const [show, setShow] = useState(false);
+
+  const handleClick = () => setShow(!show);
+
+  const submitHandler = () => {};
+
   return (
     <>
       <div className="absolute z-0">
@@ -21,40 +19,48 @@ const Home = () => {
       </div>
 
       <div className="relative z-10">
-        <Container maxW="xl" centerContent>
-          <Box
-            d="flex"
-            justifyContent="center"
-            p={3}
-            bg={"white"}
-            w="100%"
-            m="40px 0 15px 0"
-            borderRadius="lg"
-            borderWidth="1px">
-            <Text>
-              <h1 className="text-2xl poppins text-center font-semibold">
-                Sociout
-              </h1>
-            </Text>
-          </Box>
+        <div className="flex justify-center pt-60">
+          <h1 className="box poppins text-white font-thin text-4xl tracking-widest">
+            MERNFORM
+          </h1>
+        </div>
 
-          <Box bg="white" w="40%" p={4} borderRadius="lg" borderWidth="1px">
-            <Tabs variant="soft-rounded" colorScheme="green">
-              <TabList>
-                <Tab width="50%">Login</Tab>
-                <Tab width="50%">Sign Up</Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel>
-                 <Login/>
-                </TabPanel>
-                <TabPanel>
-                  <Signup/>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-          </Box>
-        </Container>
+        <div className="box login flex justify-center pt-8 ">
+          <input
+            label="Name"
+            placeholder="Enter your Name"
+            onChange={(e) => setName(e.target.value)}
+            className="p-1 w-80 rounded-sm"
+          />
+        </div>
+
+        <div className="box login flex justify-center pt-8 ">
+          <input
+            label="Email"
+            placeholder="Enter your Mail"
+            onChange={(e) => setEmail(e.target.value)}
+            className="p-1 w-80 rounded-sm"
+          />
+        </div>
+
+        <div className="box login flex justify-center pt-8 ">
+          <input
+            label="Password"
+            placeholder="Enter your Password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="p-1 w-80 rounded-sm"
+          />
+        </div>
+
+        <div className="flex justify-center">
+          <button
+           className="bg-blue-100 p-1 px-5 mt-6 rounded-sm"
+            type="submit"
+            width="full"
+            onClick={() => submitHandler()}>
+            Login
+          </button>
+        </div>
       </div>
     </>
   );
